@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="573.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._0zo.Controller.MenuController">
+    <children>
+        <ImageView fitHeight="593.0" fitWidth="859.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@imagenes/FONDOMENU.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="255.0" layoutY="56.0" text="SwordsCoinsClubsCups" textFill="#ecff99">
+            <font>
+                <Font name="Segoe Print Bold" size="31.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnStart" alignment="CENTER" layoutX="373.0" layoutY="459.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="114.0" style="-fx-background-radius: 100; -fx-background-color: null;" text="Iniciar" textFill="#ecff99">
+            <font>
+                <Font name="Segoe Print" size="25.0" />
+            </font>
+        </Button>
+        <ComboBox fx:id="cmbNumRobots" layoutX="355.0" layoutY="420.0" prefWidth="150.0" promptText="Numero de robots" style="-fx-background-radius: 100;" />
+    </children>
+</AnchorPane>

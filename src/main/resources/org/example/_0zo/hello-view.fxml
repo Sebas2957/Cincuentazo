@@ -7,35 +7,66 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="612.0" fitWidth="616.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example._0zo.Controller.GameController">
+    <children>
+        <ImageView fitHeight="612.0" fitWidth="616.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@imagenes/BackScreen.jpg" />
+            </image>
+        </ImageView>
+        <Button alignment="CENTER" layoutX="557.0" layoutY="13.0" mnemonicParsing="false" onAction="#ClickInstructions" prefHeight="35.0" prefWidth="33.0" style="-fx-background-radius: 70; -fx-background-color: blue;" text="?" textFill="WHITE">
+            <font>
+                <Font name="Consolas" size="20.0" />
+            </font>
+        </Button>
+
+
+        <Label fx:id="lblPlayerTurn" layoutX="243.0" layoutY="21.0" text="Turn: Player" textFill="WHITE">
+            <font>
+                <Font name="Consolas" size="19.0" />
+            </font>
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </Label>
+
+
+        <Label fx:id="lblTableSum" layoutX="267.0" layoutY="101.0" style="-fx-border-color: WHITE;" text="Sum: 0" textFill="WHITE">
+            <font>
+                <Font name="Consolas" size="22.0" />
+            </font>
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </Label>
+
+        <ImageView fx:id="imgActiveCard" fitHeight="140.0" fitWidth="87.0" layoutX="236.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
+
+
+        <Label fx:id="lblCurrentCard" layoutX="259.0" layoutY="191.0" text="No card" textFill="WHITE">
+            <font>
+                <Font name="Consolas" size="24.0" />
+            </font>
+        </Label>
+
+
+        <HBox fx:id="playerHandContainer" alignment="CENTER" layoutX="105.0" layoutY="454.0" prefHeight="100.0" prefWidth="400.0" spacing="10" />
+
+        <VBox layoutX="13.0" layoutY="95.0" prefHeight="400.0" prefWidth="0.0" />
+        <VBox layoutX="594.0" layoutY="95.0" prefHeight="400.0" prefWidth="0.0" />
+        <HBox layoutX="105.0" layoutY="13.0" prefHeight="0.0" prefWidth="400.0" />
+      <ImageView fitHeight="140.0" fitWidth="87.0" layoutX="323.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@imagenes/BackScreen.jpg" />
+            <Image url="@imagenes/back.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" layoutX="557.0" layoutY="13.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="33.0" style="-fx-background-radius: 70; -fx-background-color: blue;" text="?" textFill="WHITE">
-         <font>
-            <Font name="Consolas" size="20.0" />
-         </font>
-      </Button>
-      <Label layoutX="262.0" layoutY="153.0" style="-fx-border-color: WHITE;" text="Suma: 0" textFill="WHITE">
-         <font>
-            <Font name="Consolas" size="22.0" />
-         </font>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </DropShadow>
-         </effect>
-      </Label>
-      <ImageView fitHeight="128.0" fitWidth="87.0" layoutX="219.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="128.0" fitWidth="87.0" layoutX="306.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="13.0" layoutY="95.0" prefHeight="400.0" prefWidth="0.0" />
-      <VBox layoutX="594.0" layoutY="95.0" prefHeight="400.0" prefWidth="0.0" />
-      <HBox layoutX="105.0" layoutY="13.0" prefHeight="0.0" prefWidth="400.0" />
-      <HBox layoutX="105.0" layoutY="454.0" prefHeight="100.0" prefWidth="400.0" />
-   </children>
+    </children>
 </AnchorPane>

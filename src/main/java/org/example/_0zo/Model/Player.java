@@ -1,113 +1,126 @@
 package org.example._0zo.Model;
-
 import java.util.ArrayList;
 
+/**
+ * Clase base que representa a cualquier jugador en el juego.
+ * Puede ser extendida por jugadores humanos o controlados por IA.
+ *
+ * @author Sebastian-Javier-Alejandro
+ * @version 1.0
+ */
 public class Player {
 
-    private String name;
-    private ArrayList<Card> hand;
-    private boolean active;
+    protected ArrayList<Card> hand;
+    protected String name;
+    protected boolean isEliminated;
 
-    // Creates the player
-    public Player(String playerName) {
-        name = playerName;
-        hand = new ArrayList<>();
-        active = true;
+    /**
+     * Crea un nuevo jugador con el nombre especificado.
+     *
+     * @param name Nombre del jugador
+     */
+    public Player(String name) {
+        this.name = name;
+        this.hand = new ArrayList<>();
+        this.isEliminated = false;
     }
 
-    // Adds up to 4 cards to the player's hand
-    public void TakeCard(Card card) {
-        if (hand.size() >= 4) {
-            throw new IllegalStateException(name + " ya tiene 4 cartas.");
+    /**
+     * Añade una carta a la mano del jugador.
+     *
+     * @param card Carta a añadir
+     */
+    public void addCard(Card card) {
+        if (card != null) {
+            hand.add(card);
         }
-
-        hand.add(card);
     }
 
-    // Creates a copy of the cards and eliminates the player
-    public ArrayList<Card> RemovePlayer() {
-        active = false;
-
-        ArrayList<Card> cards = new ArrayList<>(hand);
-
-        hand.clear();
-
-        return cards;
-    }
-    // Player's name
-    public String GetName() {
-        return name;
+    /**
+     * Remueve una carta de la mano del jugador.
+     *
+     * @param card Carta a remover
+     */
+    public void removeCard(Card card) {
+        hand.remove(card);
     }
 
-    // Lists and gets the cards for the player
-    public ArrayList<Card> GetHand() {
+    /**
+     * Obtiene la mano completa del jugador.
+     *
+     * @return ArrayList con todas las cartas en la mano
+     */
+    public ArrayList<Card> getHand() {
         return hand;
     }
 
-    // Gets the amount of cards for the player
-    public int GetHandSize() {
-        return hand.size();
-    }
-
-    // Confirms if the player is playing
-    public boolean IsActive() {
-        return active;
-    }
-
-    // Resets the player cards for a new game
-    public void Reset() {
+    /**
+     * Devuelve todas las cartas del jugador y vacía su mano.
+     *
+     * @return ArrayList con todas las cartas que tenía el jugador
+     */
+    public ArrayList<Card> returnAllCards() {
+        ArrayList<Card> cardsToReturn = new ArrayList<>(hand);
         hand.clear();
-        active = true;
+        return cardsToReturn;
     }
 
-    @Override
-    public String toString() {
-        String status = active ? "Activo" : "Eliminado";
-        return name + " (" + status + ") - " + hand.size() + " cartas";
+    /**
+     * Obtiene el nombre del jugador.
+     *
+     * @return Nombre del jugador
+     */
+    public String getName() {
+        return name;
     }
 
-    // Plays the card selected by the player
-    public Card PlayCard(int position) {
-        // Verificar que la posición sea válida
-        if (position < 0 || position >= hand.size()) {
-            throw new IndexOutOfBoundsException("Posición inválida: " + position);
+    /**
+     * Verifica si el jugador ha sido eliminado.
+     *
+     * @return true si el jugador está eliminado, false en caso contrario
+     */
+    public boolean isEliminated() {
+        return isEliminated;
+    }
+
+    /**
+     * Marca al jugador como eliminado del juego.
+     */
+    public void eliminate() {
+        this.isEliminated = true;
+    }
+
+    /**
+     * Verifica si el jugador puede realizar al menos una jugada válida.
+     *
+     * @param board Tablero actual del juego
+     * @return true si puede jugar al menos una carta, false en caso contrario
+     */
+    public boolean canPlay(Board board) {
+        if (isEliminated) {
+            return false;
         }
 
-        return hand.remove(position);
-    }
+        int position = 0;
+        while (position < hand.size()) {
+            Card currentCard = hand.get(position);
 
-    // Confirms if any of the cards can be used without going over 50 points
-    public boolean HasPlayableCard(int currentSum) {
-        int index = 0;
-
-        while (index < hand.size()) {
-            Card card = hand.get(index);
-
-            if (card.CanPlay(currentSum)) {
+            if (board.CanPlayCard(currentCard)) {
                 return true;
             }
-            index++;
+            position++;
         }
 
         return false;
     }
 
-    // Makes a list of the cards that can be played
-    public ArrayList<Integer> GetPlayablePositions(int currentSum) {
-        ArrayList<Integer> validPositions = new ArrayList<>();
-
-        int position = 0;
-
-        while (position < hand.size()) {
-            Card card = hand.get(position);
-
-            if (card.CanPlay(currentSum)) {
-                validPositions.add(position);
-            }
-
-            position++;
-        }
-
-        return validPositions;
+    /**
+     * Retorna una representación en texto del jugador.
+     *
+     * @return String en formato "Nombre (X cartas)"
+     */
+    @Override
+    public String toString() {
+        return name + " (" + hand.size() + " cartas)";
     }
 }
